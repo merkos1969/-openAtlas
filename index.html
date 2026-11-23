@@ -1,5 +1,82 @@
-<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080e16"><title>ATLAS – Insurance Analyzer</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg"><link rel="stylesheet" href="css/style.css"></head><body>
-<header><div class="brand"><div class="logo">A</div><div><b>ATLAS</b><small>INSURANCE ANALYZER · V1.11</small></div></div><span class="local">● Επεξεργασία στη συσκευή</span></header><main>
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080e16"><title>ATLAS – Insurance Analyzer</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><style>
+*{box-sizing:border-box}body{margin:0;background:#080e16;color:#e8f1f8;font-family:Inter,system-ui,Arial,sans-serif}header{height:72px;padding:0 max(18px,calc((100% - 1120px)/2));display:flex;align-items:center;justify-content:space-between;background:#101820;border-bottom:1px solid #303944}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#efb64f,#c98d2e);display:grid;place-items:center;font-weight:900;font-size:23px}.brand b,.brand small{display:block}.brand b{letter-spacing:2px}.brand small{font-size:9px;color:#9bb5c8;letter-spacing:1.4px;margin-top:3px}.local{font-size:11px;color:#efb64f}main{max-width:1120px;width:92%;margin:35px auto 60px}.hero{padding:10px 0 20px}.hero label{font-size:10px;letter-spacing:2px;color:#efb64f;font-weight:800}.hero h1{font-size:clamp(28px,5vw,43px);margin:10px 0}.hero p,.muted{color:#9eb4c6;font-size:13px;line-height:1.6}.panel{background:#121a24;border:1px solid #303944;border-radius:17px;padding:22px;margin:17px 0}.panel h2,section>h2{font-size:18px;margin:0 0 8px}.upload{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:145px;border:1px dashed #4b8196;border-radius:14px;background:#0d141d;cursor:pointer;margin:16px 0;padding:15px}.upload:hover{border-color:#efb64f}.upload input{display:none}.upload small{color:#9bb3c6;font-size:11px}.up{width:38px;height:38px;border-radius:11px;background:#302719;color:#efb64f;display:grid;place-items:center;font-size:25px}.buttons{display:flex;gap:9px;margin-top:14px}button{background:#efb64f;color:#06252e;border:0;border-radius:9px;padding:12px 16px;font-weight:800;cursor:pointer}button.alt{background:#202832;color:#d9e8f2;border:1px solid #3b424c}button:disabled{opacity:.4;cursor:not-allowed}.status{font-size:12px;color:#b8cbd8}.progress{height:5px;background:#29475d;border-radius:9px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:#efb64f}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.cards article{background:#121a24;border:1px solid #303944;border-radius:14px;padding:17px;min-width:0}.cards small,.cards em{display:block;color:#9eb4c6;font-size:11px}.cards strong{display:block;font-size:clamp(19px,2.7vw,28px);margin:8px 0;color:white;overflow-wrap:anywhere}.cards em{color:#efb64f;font-style:normal}.money{grid-template-columns:repeat(3,1fr)}.inner{margin:14px 0}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.row select{background:#111923;color:#e7f1f8;border:1px solid #4a535f;border-radius:8px;padding:9px}.scroll{overflow:auto;margin-top:15px}table{border-collapse:collapse;width:100%;min-width:850px}th,td{text-align:right;padding:12px 10px;border-bottom:1px solid #303944;font-size:12px;white-space:nowrap}th{color:#efb64f;font-size:10px;text-transform:uppercase;letter-spacing:.5px}td:first-child,th:first-child{text-align:left}td{color:#dce8f0}.notice{background:#302b20;border-left:3px solid #efb64f;border-radius:8px;padding:15px;color:#e8d9b9;font-size:12px;line-height:1.65}.footnote{font-size:11px;color:#93aabd;line-height:1.5}footer{text-align:center;padding:22px;border-top:1px solid #303944;color:#718da4;font-size:11px}@media(max-width:750px){header{padding:0 14px}.local{font-size:0}.cards,.money{grid-template-columns:1fr 1fr}}@media(max-width:480px){.cards,.money{grid-template-columns:1fr}.panel{padding:16px}.row{align-items:flex-start;flex-direction:column}.buttons{flex-direction:column}button{width:100%}}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:14px 0 20px}
+.formgrid label{display:flex;flex-direction:column;gap:7px;color:var(--muted,#8fa8bd);font-size:.88rem}
+.formgrid input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #3a424d;border-radius:10px;background:#111923;color:#fff;font:inherit}
+#supplementaryCalculator h3{margin:22px 0 8px;color:#d9e8f5;font-size:1rem}
+
+.export-actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px auto 18px;max-width:1120px;width:92%;position:sticky;top:8px;z-index:20;padding:8px;background:#111923;border:1px solid #303944;border-radius:12px;box-shadow:0 6px 20px #0005}
+.export-actions button{flex:1;min-width:0;border:1px solid #8f6a2c;border-radius:10px;padding:13px 16px;background:#302719;color:#fff;font-weight:800;cursor:pointer}
+/* Εκτύπωση: ξεχωριστή, υψηλής αντίθεσης αναφορά Α4 landscape */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  html, body { background:#fff !important; color:#111 !important; font-family: Arial, Helvetica, sans-serif !important; font-size:10pt !important; }
+  body { -webkit-print-color-adjust:economy !important; print-color-adjust:economy !important; }
+  header, .export-actions, .upload, .buttons, #pdfFile, #analyze, #clear, .progress, #yearFilter { display:none !important; }
+  main { width:100% !important; max-width:none !important; margin:0 !important; }
+  .hero { padding:0 0 5mm !important; border-bottom:2px solid #183b54; margin-bottom:5mm !important; }
+  .hero label { color:#176c68 !important; font-size:9pt !important; }
+  .hero h1 { color:#111 !important; font-size:21pt !important; margin:2mm 0 !important; }
+  .hero p, .muted { color:#333 !important; font-size:9pt !important; }
+  #results[hidden] { display:none !important; }
+  #results { display:block !important; }
+  #results > h2 { color:#111 !important; font-size:14pt !important; margin:5mm 0 2mm !important; break-after:avoid; }
+  .panel, .panel.inner, .cards article, .notice { background:#fff !important; color:#111 !important; border:1px solid #888 !important; box-shadow:none !important; border-radius:3px !important; }
+  .panel { padding:4mm !important; margin:3mm 0 !important; }
+  .panel h2, section>h2 { color:#111 !important; font-size:12pt !important; }
+  .cards { grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:3mm !important; margin:3mm 0 !important; }
+  .money { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+  .cards article { padding:3mm !important; min-height:0 !important; }
+  .cards small, .cards em { color:#333 !important; font-size:8.5pt !important; }
+  .cards strong { color:#000 !important; font-size:14pt !important; margin:2mm 0 !important; overflow-wrap:anywhere; }
+  .cards em { color:#176c68 !important; }
+  .notice { color:#222 !important; border-left:3px solid #b58a2a !important; padding:3mm !important; font-size:8.5pt !important; line-height:1.35 !important; }
+  .footnote { color:#333 !important; font-size:8pt !important; line-height:1.35 !important; }
+  .scroll { overflow:visible !important; margin-top:2mm !important; }
+  table { width:100% !important; min-width:0 !important; table-layout:fixed !important; border-collapse:collapse !important; }
+  thead { display:table-header-group; }
+  tr { break-inside:avoid !important; page-break-inside:avoid !important; }
+  th, td { color:#111 !important; border:1px solid #888 !important; padding:2.2mm 1.5mm !important; font-size:8.5pt !important; line-height:1.2 !important; white-space:normal !important; overflow-wrap:anywhere !important; }
+  th { background:#e8eef2 !important; color:#111 !important; font-weight:700 !important; font-size:8pt !important; }
+  td:first-child, th:first-child { text-align:left !important; }
+  #yearRows td, #monthRows td, #otherRows td { font-variant-numeric:tabular-nums; }
+  #monthRows tr:nth-child(even), #yearRows tr:nth-child(even), #otherRows tr:nth-child(even) { background:#f3f6f8 !important; }
+  footer { color:#333 !important; border-top:1px solid #888 !important; font-size:8pt !important; padding:3mm !important; }
+  .row { display:block !important; }
+  .panel.inner:has(#monthRows) { break-before:page !important; }
+  .panel.inner:has(#otherRows) { break-before:page !important; }
+  .panel.inner:has(#yearRows) { break-before:page !important; }
+  .panel.inner:has(#yearRows) .scroll, .panel.inner:has(#monthRows) .scroll, .panel.inner:has(#otherRows) .scroll { overflow:visible !important; }
+}
+
+/* ATLAS V1.12 — σκούρο ανθρακί και χρυσό, εμπνευσμένο από το δείγμα */
+@media screen {
+  body { background:#080e16; color:#e7e9ed; }
+  header { background:#080e16; border-bottom:1px solid #252d37; }
+  .logo { background:linear-gradient(135deg,#f5c15e,#d99a35); color:#111820; }
+  .brand small,.hero p,.muted,.status { color:#929ba6; }
+  .local,.hero label { color:#e9b451; }
+  .panel,.cards article { background:#101820; border-color:#29323d; }
+  .upload { background:#0d151e; border-color:#4b5663; }
+  .upload:hover { border-color:#efb64f; }
+  .up { background:#2b2418; color:#efb64f; }
+  button,.export-actions button { background:#efb64f; color:#111820; border:1px solid #efb64f; }
+  button.alt { background:#151e28; color:#e7e9ed; border:1px solid #303a46; }
+  .progress { background:#29323d; }
+  .progress i { background:#efb64f; }
+  .cards em,th { color:#e9b451; }
+  .cards strong { color:#f4f5f7; }
+  .row select,.formgrid input { background:#0d151e; color:#e7e9ed; border-color:#303b47; }
+  th,td { border-bottom-color:#29323d; }
+  td { color:#d9dde3; }
+  .notice { background:#2b261d; border-left-color:#efb64f; color:#e8dcc0; }
+  footer { border-top-color:#252d37; color:#858f9b; }
+  .export-actions { background:#0d151e; border-color:#29323d; box-shadow:0 6px 20px #0008; }
+  #supplementaryCalculator h3 { color:#e7e9ed; }
+}
+
+</style></head><body>
+<header><div class="brand"><div class="logo">A</div><div><b>ATLAS</b><small>INSURANCE ANALYZER · V1.12</small></div></div><span class="local">● Επεξεργασία στη συσκευή</span></header><main>
 <section class="hero"><label>ΑΣΦΑΛΙΣΤΙΚΟ ΒΙΟΓΡΑΦΙΚΟ</label><h1>Ανάλυση ασφαλιστικού ιστορικού</h1><p>Μηνιαίες αποδοχές, εισφορές και ημέρες ασφάλισης για κύρια και επικουρική ασφάλιση.</p></section>
 <div class="export-actions" role="group" aria-label="Εκτύπωση ή αποθήκευση PDF"><button type="button" id="printPdfBtn">⬇ Εκτύπωση / Αποθήκευση PDF</button></div>
 <section class="panel"><h2>01 · Φόρτωση PDF Άτλας</h2><p class="muted">Επίλεξε το ασφαλιστικό βιογραφικό PDF.</p><label class="upload" for="pdfFile"><span class="up">↑</span><b>Φόρτωση PDF Άτλας</b><small>Πάτησε για επιλογή αρχείου</small><input id="pdfFile" type="file" accept=".pdf,application/pdf"></label><div id="fileName" class="muted">Δεν έχει επιλεγεί αρχείο.</div><div class="buttons"><button id="analyze" disabled>Ανάλυση ασφαλιστικού ιστορικού</button><button id="clear" class="alt" disabled>Καθαρισμός</button></div><p id="status" class="status">Αναμονή αρχείου.</p><div class="progress" hidden id="progress"><i id="bar"></i></div></section>
@@ -46,5 +123,5 @@
 <article><small>Σύνολο μικτών επικουρικής από 2002</small><strong id="pensionGrossSupp">—</strong><em>Κωδικός 2717</em></article>
 <article><small>Μέσος όρος επικουρικής από 2002</small><strong id="pensionAverageSupp">—</strong><em>Πριν από ειδικούς κανόνες</em></article>
 </div></div>
-<div class="notice"><b>Πώς υπολογίζεται ο μέσος όρος:</b> Για την κύρια ασφάλιση διαιρείται το σύνολο μικτών αποδοχών κωδικού 3001 με τους μοναδικούς μήνες στους οποίους υπάρχει εγγραφή 3001. Οι εισφορές αθροίζονται ξεχωριστά. Το ίδιο γίνεται για τον κωδικό 2717. Οι εγγραφές τύπου 09 (αναδρομικές) προστίθενται στα ποσά, αλλά όχι ως νέες ημέρες. Το πλήρες ιστορικό αρχίζει από την πρώτη εγγραφή που υπάρχει στο PDF (1987), ενώ ο απλός μέσος όρος αποδοχών εμφανίζεται χωριστά για εγγραφές από 01/01/2002 και μετά. Δεν εφαρμόζονται εδώ οι νόμιμες αναπροσαρμογές ή άλλοι ειδικοί κανόνες.</div><p class="footnote">Η εφαρμογή αναλύει το περιεχόμενο του PDF· δεν αποτελεί επίσημη βεβαίωση ασφαλιστικού χρόνου ή συντάξιμων αποδοχών.</p></section></main><footer>ATLAS Insurance Analyzer · V1.11</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="js/app.js"></script></body></html>
+<div class="notice"><b>Πώς υπολογίζεται ο μέσος όρος:</b> Για την κύρια ασφάλιση διαιρείται το σύνολο μικτών αποδοχών κωδικού 3001 με τους μοναδικούς μήνες στους οποίους υπάρχει εγγραφή 3001. Οι εισφορές αθροίζονται ξεχωριστά. Το ίδιο γίνεται για τον κωδικό 2717. Οι εγγραφές τύπου 09 (αναδρομικές) προστίθενται στα ποσά, αλλά όχι ως νέες ημέρες. Το πλήρες ιστορικό αρχίζει από την πρώτη εγγραφή που υπάρχει στο PDF (1987), ενώ ο απλός μέσος όρος αποδοχών εμφανίζεται χωριστά για εγγραφές από 01/01/2002 και μετά. Δεν εφαρμόζονται εδώ οι νόμιμες αναπροσαρμογές ή άλλοι ειδικοί κανόνες.</div><p class="footnote">Η εφαρμογή αναλύει το περιεχόμενο του PDF· δεν αποτελεί επίσημη βεβαίωση ασφαλιστικού χρόνου ή συντάξιμων αποδοχών.</p></section></main><footer>ATLAS Insurance Analyzer · V1.13</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="app.js"></script></body></html>
