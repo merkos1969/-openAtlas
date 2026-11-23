@@ -1,0 +1,50 @@
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080e16"><title>ATLAS – Insurance Analyzer</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg"><link rel="stylesheet" href="css/style.css"></head><body>
+<header><div class="brand"><div class="logo">A</div><div><b>ATLAS</b><small>INSURANCE ANALYZER · V1.11</small></div></div><span class="local">● Επεξεργασία στη συσκευή</span></header><main>
+<section class="hero"><label>ΑΣΦΑΛΙΣΤΙΚΟ ΒΙΟΓΡΑΦΙΚΟ</label><h1>Ανάλυση ασφαλιστικού ιστορικού</h1><p>Μηνιαίες αποδοχές, εισφορές και ημέρες ασφάλισης για κύρια και επικουρική ασφάλιση.</p></section>
+<div class="export-actions" role="group" aria-label="Εκτύπωση ή αποθήκευση PDF"><button type="button" id="printPdfBtn">⬇ Εκτύπωση / Αποθήκευση PDF</button></div>
+<section class="panel"><h2>01 · Φόρτωση PDF Άτλας</h2><p class="muted">Επίλεξε το ασφαλιστικό βιογραφικό PDF.</p><label class="upload" for="pdfFile"><span class="up">↑</span><b>Φόρτωση PDF Άτλας</b><small>Πάτησε για επιλογή αρχείου</small><input id="pdfFile" type="file" accept=".pdf,application/pdf"></label><div id="fileName" class="muted">Δεν έχει επιλεγεί αρχείο.</div><div class="buttons"><button id="analyze" disabled>Ανάλυση ασφαλιστικού ιστορικού</button><button id="clear" class="alt" disabled>Καθαρισμός</button></div><p id="status" class="status">Αναμονή αρχείου.</p><div class="progress" hidden id="progress"><i id="bar"></i></div></section>
+<section id="results" hidden><h2>02 · Συνολική ασφαλιστική διαδρομή 1987–σήμερα</h2>
+<div class="cards">
+<article><small>Πρώτη καταγεγραμμένη περίοδος</small><strong id="firstPeriod">—</strong><em>Από το PDF Άτλας</em></article>
+<article><small>Τελευταία καταγεγραμμένη περίοδος</small><strong id="lastPeriod">—</strong><em>Από το PDF Άτλας</em></article>
+<article><small>Κωδικοί ασφαλιστικής ιστορίας</small><strong id="codeCount">—</strong><em>Κύρια, επικουρική και λοιποί κλάδοι</em></article>
+</div>
+<div class="notice"><b>Προσοχή:</b> Οι ημέρες διαφορετικών κωδικών δεν προστίθενται μεταξύ τους ως ενιαίος χρόνος. Οι εγγραφές εμφανίζονται ανά κλάδο, ώστε να αποφεύγεται η διπλή μέτρηση της ίδιας περιόδου.</div>
+<div class="panel inner">
+<h2>Σύνολο συντάξιμης περιόδου κύριας ασφάλισης</h2>
+<p class="muted">Υπολογισμός από τις ημέρες των κωδικών κύριας ασφάλισης που αναγνωρίζονται στο PDF, από την πρώτη διαθέσιμη εγγραφή έως την τελευταία.</p>
+<div class="cards">
+<article><small>Συνολικές ημέρες κύριας ασφάλισης</small><strong id="totalPensionDays">—</strong><em>Χωρίς επικουρικές ημέρες</em></article>
+<article><small>Συντάξιμος χρόνος</small><strong id="totalPensionPeriod">—</strong><em>Έτη · μήνες · ημέρες (300/25)</em></article>
+</div>
+<p class="footnote">Συνυπολογίζονται οι ημέρες των κωδικών 1011, 1708, 1177 και 3001. Δεν προστίθενται οι κωδικοί επικουρικής ή ασθένειας. Το αποτέλεσμα είναι προσωρινή καταμέτρηση του PDF και χρειάζεται έλεγχο για τυχόν επικαλύψεις ή διορθώσεις του e-ΕΦΚΑ.</p>
+</div>
+<h2>03 · Συγκεντρωτικά στοιχεία κύριας και επικουρικής</h2><div class="cards">
+<article><small>Ημέρες κύριας σύνταξης</small><strong id="mainDays">—</strong><em>Κωδικός 3001</em></article>
+<article><small>Ημέρες επικουρικής</small><strong id="suppDays">—</strong><em>Κωδικός 2717</em></article>
+<article><small>Μήνες με εγγραφές</small><strong id="months">—</strong><em>Μοναδικοί μήνες</em></article>
+</div>
+
+<h2>04 · Σύνολα αποδοχών και εισφορών</h2><div class="cards money">
+<article><small>Σύνολο μικτών κύριας</small><strong id="mainGross">—</strong><em>Κωδικός 3001</em></article>
+<article><small>Σύνολο εισφορών κύριας</small><strong id="mainContrib">—</strong><em>Ποσό εισφορών PDF</em></article>
+<article><small>Μέσος όρος μικτών κύριας / μήνα</small><strong id="mainAverage">—</strong><em>Μόνο μήνες με εγγραφή 3001</em></article>
+<article><small>Σύνολο μικτών επικουρικής</small><strong id="suppGross">—</strong><em>Κωδικός 2717</em></article>
+<article><small>Σύνολο εισφορών επικουρικής</small><strong id="suppContrib">—</strong><em>Ποσό εισφορών PDF</em></article>
+<article><small>Μέσος όρος μικτών επικουρικής / μήνα</small><strong id="suppAverage">—</strong><em>Μόνο μήνες με εγγραφή 2717</em></article>
+</div>
+<div class="panel inner"><div class="row"><div><h2>06 · Αναλυτικά ανά έτος</h2><p class="muted">Ημέρες, μικτές αποδοχές και εισφορές.</p></div><select id="yearFilter"><option value="all">Όλα τα έτη</option></select></div><div class="scroll"><table><thead><tr><th>Έτος</th><th>Κύρια ημέρες</th><th>Κύρια μικτά</th><th>Κύρια εισφορές</th><th>Επικ. ημέρες</th><th>Επικ. μικτά</th><th>Επικ. εισφορές</th></tr></thead><tbody id="yearRows"></tbody></table></div></div>
+<div class="panel inner"><h2>07 · Αναλυτικά ανά μήνα</h2><p class="muted">Κάθε μήνας εμφανίζεται μία φορά ανά ασφαλιστικό κλάδο.</p><div class="scroll"><table><thead><tr><th>Μήνας / έτος</th><th>Κύρια ημέρες</th><th>Κύρια μικτά</th><th>Κύρια εισφορές</th><th>Επικ. ημέρες</th><th>Επικ. μικτά</th><th>Επικ. εισφορές</th></tr></thead><tbody id="monthRows"></tbody></table></div></div>
+<div class="panel inner"><h2>08 · Ιστορικοί και λοιποί ασφαλιστικοί κωδικοί</h2><p class="muted">Παρουσιάζονται χωριστά, χωρίς να προστίθενται αυτομάτως στα σύνολα κύριας ή επικουρικής.</p><div class="scroll"><table><thead><tr><th>Κωδικός</th><th>Περιγραφή</th><th>Ημέρες</th><th>Μικτές αποδοχές</th><th>Εισφορές</th><th>Εγγραφές</th></tr></thead><tbody id="otherRows"></tbody></table></div></div>
+<div class="panel inner"><h2>09 · Συντάξιμες αποδοχές από 2002</h2>
+<p class="muted">Ξεχωριστή περίοδος υπολογισμού μέσου όρου, χωρίς να χάνεται το παλαιότερο ασφαλιστικό ιστορικό.</p>
+<div class="cards">
+<article><small>Μήνες κύριας από 2002</small><strong id="pensionMonthsMain">—</strong><em>Μήνες με εγγραφή 3001</em></article>
+<article><small>Σύνολο μικτών κύριας από 2002</small><strong id="pensionGrossMain">—</strong><em>Κωδικός 3001</em></article>
+<article><small>Μέσος όρος κύριας από 2002</small><strong id="pensionAverageMain">—</strong><em>Πριν από νόμιμες αναπροσαρμογές</em></article>
+<article><small>Μήνες επικουρικής από 2002</small><strong id="pensionMonthsSupp">—</strong><em>Μήνες με εγγραφή 2717</em></article>
+<article><small>Σύνολο μικτών επικουρικής από 2002</small><strong id="pensionGrossSupp">—</strong><em>Κωδικός 2717</em></article>
+<article><small>Μέσος όρος επικουρικής από 2002</small><strong id="pensionAverageSupp">—</strong><em>Πριν από ειδικούς κανόνες</em></article>
+</div></div>
+<div class="notice"><b>Πώς υπολογίζεται ο μέσος όρος:</b> Για την κύρια ασφάλιση διαιρείται το σύνολο μικτών αποδοχών κωδικού 3001 με τους μοναδικούς μήνες στους οποίους υπάρχει εγγραφή 3001. Οι εισφορές αθροίζονται ξεχωριστά. Το ίδιο γίνεται για τον κωδικό 2717. Οι εγγραφές τύπου 09 (αναδρομικές) προστίθενται στα ποσά, αλλά όχι ως νέες ημέρες. Το πλήρες ιστορικό αρχίζει από την πρώτη εγγραφή που υπάρχει στο PDF (1987), ενώ ο απλός μέσος όρος αποδοχών εμφανίζεται χωριστά για εγγραφές από 01/01/2002 και μετά. Δεν εφαρμόζονται εδώ οι νόμιμες αναπροσαρμογές ή άλλοι ειδικοί κανόνες.</div><p class="footnote">Η εφαρμογή αναλύει το περιεχόμενο του PDF· δεν αποτελεί επίσημη βεβαίωση ασφαλιστικού χρόνου ή συντάξιμων αποδοχών.</p></section></main><footer>ATLAS Insurance Analyzer · V1.11</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="js/app.js"></script></body></html>
